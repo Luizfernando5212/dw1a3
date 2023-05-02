@@ -33,14 +33,14 @@ const Transaction = {
 
     add(transaction) {
         Transaction.all.push(transaction)
-        // if ((Transaction.total() >= Math.abs(transaction.amount) && transaction.amount < 0) || transaction.amount > 0) {
-        //     Transaction.all.push(transaction)
-        // } else {
-        //     throw new Error('Saldo insuficiente.')
-        // }
-        if (Transaction.total() < 0) {
-            getComputedStyle(element).getPropertyValue('--')
+        if ((Transaction.total() >= Math.abs(transaction.amount) && transaction.amount < 0) || transaction.amount > 0) {
+            Transaction.all.push(transaction)
+        } else {
+            throw new Error('Saldo insuficiente.')
         }
+        // if (Transaction.total() < 0) {
+        //     getComputedStyle(element).getPropertyValue('--')
+        // }
         App.reload()
     },
 
