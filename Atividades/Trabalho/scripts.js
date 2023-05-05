@@ -32,7 +32,7 @@ const Transaction = {
     all: Storage.get(),
 
     add(transaction) {
-        Transaction.all.push(transaction)
+        // Transaction.all.push(transaction)
         if ((Transaction.total() >= Math.abs(transaction.amount) && transaction.amount < 0) || transaction.amount > 0) {
             Transaction.all.push(transaction)
         } else {
