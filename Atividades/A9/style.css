@@ -1,0 +1,59 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+}
+
+div {
+    position: absolute;
+
+    bottom: 50%;
+    width: 25%;
+    height: 25vh;
+}
+
+.selected-color {
+    background-color: black; /* valor padrão */
+    color: white;
+}
+
+.selected-color.black {
+    background-color: black;
+    color: white;
+}
+
+.selected-color.white {
+    background-color: white;
+    color: black;
+}
+
+.selected-color.red {
+    background-color: red;
+    color: black;
+}
+
+.selected-color.purple {
+    background-color: purple;
+    color: black;
+}
+
+.selected-color.fuchsia {
+    background-color: fuchsia;
+    color: black;
+}
+
+.selected-color.green {
+    background-color: green;
+    color: black;
+}
+
+.selected-color.yellow {
+    background-color: yellow;
+    color: black;
+}
+
+.selected-color.aqua {
+    background-color: aqua;
+    color: black;
+}
