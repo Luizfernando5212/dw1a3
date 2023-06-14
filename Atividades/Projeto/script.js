@@ -11,23 +11,30 @@ function login() {
         localStorage.setItem("isLoggedIn", true);
 
         var entryList = document.getElementById("entryList");
-        datas.forEach(function (data) {
-            var newEntry = document.createElement("li");
-            newEntry.textContent = data;
-            
+        entryList.innerHTML = ""; // Limpar a lista antes de adicionar as entradas
 
-            var deleteButton = document.createElement("button");
-            deleteButton.textContent = "Remover";
-            deleteButton.addEventListener("click", function () {
-                entryList.removeChild(newEntry);
+
+        if (datas.length > 0) {
+            var entryList = document.getElementById("entryList");
+            datas.forEach(function (data) {
+                var newEntry = document.createElement("li");
+                newEntry.textContent = data;
+
+
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "del";
+                deleteButton.addEventListener("click", function () {
+                    entryList.removeChild(newEntry);
+                });
+
+                newEntry.appendChild(deleteButton);
+                entryList.appendChild(newEntry);
             });
-
-            newEntry.appendChild(deleteButton);
-            entryList.appendChild(newEntry);
-        });
+        }
     } else {
         alert("Credenciais inválidas. Tente novamente.");
     }
+    console.log(datas)
 }
 
 function addEntry() {
@@ -54,9 +61,14 @@ function addEntry() {
                 newEntry.textContent = data.result;
 
                 var deleteButton = document.createElement("button");
-                deleteButton.textContent = "Remover";
+                deleteButton.textContent = "del";
                 deleteButton.addEventListener("click", function () {
                     entryList.removeChild(newEntry);
+                    var index = datas.indexOf(data.result);
+                    if (index !== -1) {
+                        datas.splice(index, 1);
+                        localStorage.setItem("datas", JSON.stringify(datas));
+                    }
                 });
 
                 newEntry.appendChild(deleteButton);
@@ -93,7 +105,8 @@ function logout() {
     document.getElementById("loginPage").classList.remove("hidden");
     // Limpar o estado do login, como o token de autenticação em localStorage ou cookies
     localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("datas");
+    // localStorage.removeItem("datas");
+    // datas = []
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -103,23 +116,39 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isLoggedIn) {
         document.getElementById("loginPage").classList.add("hidden");
         document.getElementById("agendaPage").classList.remove("hidden");
+
+        // var storedDates = localStorage.getItem("datas");
+        // console.lo
+        // if (storedDates) {
+        //     datas = JSON.parse(storedDates);
+        // }
+
+        if (datas.length > 0) {
+            var entryList = document.getElementById("entryList");
+    
+            datas.forEach(function (data) {
+                var newEntry = document.createElement("li");
+                newEntry.textContent = data;
+    
+    
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "del";
+                deleteButton.addEventListener("click", function () {
+                    entryList.removeChild(newEntry);
+                });
+    
+                newEntry.appendChild(deleteButton);
+                entryList.appendChild(newEntry);
+            });
+        }
+        console.log(datas)
     }
 
     // Datas a serem carregadas
-    var entryList = document.getElementById("entryList");
-
-    datas.forEach(function (data) {
-        var newEntry = document.createElement("li");
-        newEntry.textContent = data;
-        
-
-        var deleteButton = document.createElement("button");
-        deleteButton.textContent = "Remover";
-        deleteButton.addEventListener("click", function () {
-            entryList.removeChild(newEntry);
-        });
-
-        newEntry.appendChild(deleteButton);
-        entryList.appendChild(newEntry);
-    });
+    
 });
+
+window.addEventListener("beforeunload", function() {
+    // Salvar os dados no localStorage antes de fechar a página
+    localStorage.setItem("datas", JSON.stringify(datas));
+  });
