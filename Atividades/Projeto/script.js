@@ -65,6 +65,7 @@ function addEntry() {
                 deleteButton.addEventListener("click", function () {
                     entryList.removeChild(newEntry);
                     var index = datas.indexOf(data.result);
+                    
                     if (index !== -1) {
                         datas.splice(index, 1);
                         localStorage.setItem("datas", JSON.stringify(datas));
@@ -99,13 +100,24 @@ function addEntry() {
     entryInput.value = "";
 }
 
+// function deleteEntry(entry) {
+//     var entryText = entry.textContent;
+//     var entryList = document.getElementById("entryList");
+//     entryList.removeChild(entry);
+//     var index = datas.indexOf(entryText);
+//     if (index > -1) {
+//       datas.splice(index, 1);
+//       localStorage.setItem("datas", JSON.stringify(datas));
+//     }
+//   }
+
 
 function logout() {
     document.getElementById("agendaPage").classList.add("hidden");
     document.getElementById("loginPage").classList.remove("hidden");
     // Limpar o estado do login, como o token de autenticação em localStorage ou cookies
     localStorage.removeItem("isLoggedIn");
-    // localStorage.removeItem("datas");
+    localStorage.removeItem("datas");
     // datas = []
 }
 
@@ -126,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (datas.length > 0) {
             var entryList = document.getElementById("entryList");
     
-            datas.forEach(function (data) {
+            datas.forEach(function (data, index) {
                 var newEntry = document.createElement("li");
                 newEntry.textContent = data;
     
@@ -135,13 +147,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 deleteButton.textContent = "del";
                 deleteButton.addEventListener("click", function () {
                     entryList.removeChild(newEntry);
+
+                    if (index !== -1) {
+                        datas.splice(index, 1);
+                        localStorage.setItem("datas", JSON.stringify(datas));
+                    }
                 });
     
                 newEntry.appendChild(deleteButton);
                 entryList.appendChild(newEntry);
             });
         }
-        console.log(datas)
+        // console.log(datas)
+        // datas = []
+        // localStorage.removeItem("datas");
     }
 
     // Datas a serem carregadas
