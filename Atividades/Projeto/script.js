@@ -22,7 +22,7 @@ function login() {
 
 
                 var deleteButton = document.createElement("button");
-                deleteButton.textContent = "del";
+                deleteButton.textContent = "Del";
                 deleteButton.addEventListener("click", function () {
                     entryList.removeChild(newEntry);
                 });
@@ -61,7 +61,7 @@ function addEntry() {
                 newEntry.textContent = data.result;
 
                 var deleteButton = document.createElement("button");
-                deleteButton.textContent = "del";
+                deleteButton.textContent = "Del";
                 deleteButton.addEventListener("click", function () {
                     entryList.removeChild(newEntry);
                     var index = datas.indexOf(data.result);
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
                 var deleteButton = document.createElement("button");
-                deleteButton.textContent = "del";
+                deleteButton.textContent = "Del";
                 deleteButton.addEventListener("click", function () {
                     entryList.removeChild(newEntry);
 

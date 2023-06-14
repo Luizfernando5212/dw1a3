@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    width: 300px;
+    width: 350px;
     margin: 0 auto;
     margin-top: 50px;
     background-color: #fff;
@@ -31,6 +31,13 @@ h2 {
     margin-bottom: 20px;
 }
 
+.form-group input,
+.form-group button,
+.form-group span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .form-group label {
     display: block;
     font-weight: bold;
@@ -38,7 +45,7 @@ h2 {
 }
 
 .form-group input {
-    width: 100%;
+    width: 91%;
     padding: 5px;
     font-size: 16px;
     border-radius: 3px;
@@ -100,6 +107,20 @@ h2 {
 .agenda li button:hover {
     background-color: #ff3333;
 }
+
+.agenda-info {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+  
 
 .hidden {
     display: none;
